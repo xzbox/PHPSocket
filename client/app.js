@@ -19,7 +19,7 @@
  *****************************************************************************/
 
 
-var host = "192.168.1.6",
+var host = "127.0.0.1",
     port = "8085",
     rsa_n,//use in both of decrypting and encrypting as n(public)
     rsa_ed,//rsa_ed is both e and d it uses as e(public) in decrypting and uses as d(private) in encrypting
@@ -93,7 +93,7 @@ window.onhashchange = function(){
     api.requestPage(location.hash);
 };
 jq.onload = function(){
-    var url = "ws://"+host+":"+port+"/sessionId="+localStorage.sessionId+"&lang="+localStorage.lang;
+    var url = "ws://"+host+":"+port+"/sessionId="+localStorage.sessionId+"&lang="+localStorage.lang+"&md5="+localStorage.templateHash;
     ws = new WebSocket(url);
     ws.onopen = function(){
         if(debug){

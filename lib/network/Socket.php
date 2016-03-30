@@ -15,17 +15,33 @@
  *   You should have received a copy of the GNU General Public License       *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
  *___________________________________________________________________________*
- *                       Created by AliReza Ghadimi                          *
- *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
+ *                             Created by  Qti3e                             *
+ *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
 namespace lib\network;
 use lib\client\js;
-use lib\client\js\console;
 use lib\sessions\sessions;
+use lib\view\templates;
 
+/**
+ * Class Socket
+ * @package lib\network
+ */
 class Socket extends WebSocketServer{
     /**
-     * @param WebSocketUser $user
+     * @param $user
+     *
+     * @return void
+     */
+    private function sendTemplate($user){
+
+        $this->send($user,js::equal('localStorage.templateHash',templates::md5()));
+    }
+
+    /**
+     * @param $user
+     *
+     * @return void
      */
     protected function connected($user){
         parse_str(trim($user->headers['get'],'/'),$get);
@@ -37,18 +53,34 @@ class Socket extends WebSocketServer{
             $user->sessionId = sessions::create($user);
             $this->send($user,js::equal('localStorage.sessionId',$user->sessionId));
         }
-        $this->send($user,console::log($get['sessionId']));
-	    $session = sessions::getByUser($user);
-        $session->name = 'alireza';
+        if($get['md5'] !== templates::md5()){
+
+        }
     }
+
+    /**
+     * @param $user
+     * @param $message
+     */
     protected function onMessage($user,$message){
 
     }
+
+    /**
+     * @param $user
+     *
+     * @return void
+     */
     protected function closed($user){
 
     }
 
-
+    /**
+     * @param $user
+     * @param $message
+     *
+     * @return void
+     */
     protected function process($user, $message){
         //TODO:RSA
         $this->onMessage($user,$message);

@@ -20,9 +20,36 @@
  *****************************************************************************/
 namespace pages;
 use lib\i18n\lang as lang;
-class main{
+use lib\view\view;
+
+/**
+ * Class main
+ * @package pages
+ */
+class main extends view{
+    /**
+     * @return bool
+     */
     public function getLang(){
-        $lang = lang::get();
+	    $lang = lang::get();
         return $lang;
     }
+
+	/**
+	 * @param \lib\network\WebSocketUser $user
+	 *
+	 * @return void
+	 */
+	public function closed($user) {
+
+	}
+
+	/**
+	 * @param \lib\network\WebSocketUser $user
+	 *
+	 * @return void
+	 */
+	public function connected($user) {
+
+	}
 }

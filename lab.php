@@ -15,48 +15,35 @@
  *   You should have received a copy of the GNU General Public License       *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
  *___________________________________________________________________________*
- *                       Created by AliReza Ghadimi                          *
- *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
+ *                             Created by  Qti3e                             *
+ *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
-//helpers
-/**
- * @param $string
- *
- * @return string
- */
-function addslashes_dq($string){
-	return addcslashes($string,'"\\');
-}
-class test{
-	public $addr;
-	public function __construct($b = "") {
-		$this->addr = $b;
-	}
-
-	public static function jsFunc($name,$args = []){
-		$count   = count($args);
-		$argStr  = '';
-		for($i = 0;$i < $count;$i++){
-			$argStr .= ',"'.addslashes_dq($args[$i]).'"';
+if(isset($_GET['url'])){
+	$file = '../files/'.$_GET['url'];
+	if (file_exists($file)) {
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename='.basename($file));
+		header('Content-Transfer-Encoding: binary');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		header('Pragma: public');
+		header('Content-Length: ' . filesize($file));
+		ob_clean();
+		flush();
+		readfile($file);
+		file_put_contents('download.log',@file_get_contents('download.log')."\n$file");
+		exit;
+	}else{
+		if($file == 'API_last_file'){
+			$lines = @file('download.log');
+			echo $lines[count($lines)-1];
+		}else{
+			http_response_code(404);
+			echo '404 Not Found!';
 		}
-		$code    = $name.'('.substr($argStr,1,strlen($argStr)).');';
-		return $code;
 	}
-	public function __call($name, $arguments) {
-		$p = self::jsFunc($this->addr.'.'.$name,$arguments);
-		return substr($p,1,strlen($p)-1);
-	}
-	public function __get($name) {
-		return (new test($this->addr.'.'.$name));
-	}
-	public function __set($name, $value) {
-		// TODO: Implement __set() method.
-		return $this->addr.'.'.$name.' = "'.addslashes_dq($value).'";';
-	}
-
-	public function __toString() {
-		// TODO: Implement __toString() method.
-		return 'RE:'.substr($this->addr,1,strlen($this->addr)-1);
-	}
+}else{
+	http_response_code(403);
+	echo '403 Forbidden error!<br>Your client does not have permission to get URL /archive from this server. That’s all we know.';
 }
-echo ((new test())->bc->s->a("Hi this is my text"));

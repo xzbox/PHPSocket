@@ -15,10 +15,16 @@
  *   You should have received a copy of the GNU General Public License       *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
  *___________________________________________________________________________*
- *                       Created by AliReza Ghadimi                          *
- *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
+ *                             Created by  Qti3e                             *
+ *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
-
+/**
+ * Test
+ *
+ * @package Web Socket
+ * @category Index
+ * @author Quti3e<Qti3eQti3e@Gmail.com>
+ */
 set_time_limit(0);
 include('lib/controller/Controller.php');
 $controller = new \lib\controller\Controller();

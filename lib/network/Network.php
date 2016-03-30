@@ -15,11 +15,19 @@
  *   You should have received a copy of the GNU General Public License       *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
  *___________________________________________________________________________*
- *                       Created by AliReza Ghadimi                          *
- *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
+ *                             Created by  Qti3e                             *
+ *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
 namespace lib\network;
+
+/**
+ * Class Network
+ * @package lib\network
+ */
 class Network{
+    /**
+     * @return string
+     */
     public static function ServerIPv4(){
         $ipConfig = shell_exec('ipconfig -all');
         preg_match_all('/IPv4 Address. . . . . . . . . . . : ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)/',$ipConfig,$IPV4);

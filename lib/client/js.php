@@ -15,13 +15,17 @@
  *   You should have received a copy of the GNU General Public License       *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
  *___________________________________________________________________________*
- *                       Created by AliReza Ghadimi                          *
- *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
+ *                             Created by  Qti3e                             *
+ *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
 namespace lib\client;
 use lib\helper\strings;
 use lib\network\Socket;
 
+/**
+ * Class js
+ * @package lib\client
+ */
 class js{
     /**
      * @var Socket
@@ -36,6 +40,12 @@ class js{
     }
 
     //TODO:Array args
+    /**
+     * @param       $name
+     * @param array $args
+     *
+     * @return string
+     */
     public static function jsFunc($name,$args = []){
         $count   = count($args);
         $argStr  = '';
@@ -46,10 +56,23 @@ class js{
         return $code;
     }
 
+    /**
+     * @param       $user
+     * @param       $name
+     * @param array $args
+     *
+     * @return void
+     */
     public static function doFunc($user,$name,$args = []){
         sender::ByUser($user,self::jsFunc($name,$args));
     }
 
+    /**
+     * @param $name
+     * @param $value
+     *
+     * @return string
+     */
     public static function equal($name,$value){
         return $name.' = "'.strings::addslashes_dq($value).'";';
     }

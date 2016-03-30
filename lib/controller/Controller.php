@@ -15,16 +15,27 @@
  *   You should have received a copy of the GNU General Public License       *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
  *___________________________________________________________________________*
- *                       Created by AliReza Ghadimi                          *
- *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
+ *                             Created by  Qti3e                             *
+ *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
 namespace lib\controller;
 use lib\network\Network;
 use lib\network\Socket;
 use lib\sessions\sessions;
+use lib\view\templates;
 
+/**
+ * Class Controller
+ * @package lib\controller
+ */
 class Controller{
     protected $server;
+
+    /**
+     * @param $class
+     *
+     * @return bool
+     */
     public function auto_load($class){
         $file = str_replace("\\","/",$class).'.php';
         if(file_exists($file)){
@@ -35,12 +46,18 @@ class Controller{
         }
         return false;
     }
+
+    /**
+     * Controller constructor.
+     */
     public function __construct(){
         spl_autoload_register([$this,"auto_load"]);
     }
+
     public function run(){
         sessions::$tmp_address = sessions_folder;
         sessions::load();
+        templates::load();
         printf("Welcome to the WSoc server!\r\nIPv4 Address : %s\r\n",Network::ServerIPv4());
         $this->server = new Socket(socket_addr,socket_port,socket_bufferLength);
         $this->server->run();

@@ -15,13 +15,36 @@
  *   You should have received a copy of the GNU General Public License       *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
  *___________________________________________________________________________*
- *                       Created by AliReza Ghadimi                          *
- *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
+ *                             Created by  Qti3e                             *
+ *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
 namespace lib\view;
+
+use lib\network\WebSocketUser;
+
+/**
+ * Class view
+ * @package lib\view
+ */
 abstract class view{
     public $role = "";
-    public static function getTemplate(){}
+
+    /**
+     * @return string
+     */
+    public static function getTemplate(){return '';}
+
+    /**
+     * @param WebSocketUser $user
+     *
+     * @return mixed
+     */
     abstract public function connected($user);
+
+    /**
+     * @param WebSocketUser $user
+     *
+     * @return mixed
+     */
     abstract public function closed($user);
 }

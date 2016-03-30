@@ -15,11 +15,16 @@
  *   You should have received a copy of the GNU General Public License       *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
  *___________________________________________________________________________*
- *                       Created by AliReza Ghadimi                          *
- *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
+ *                             Created by  Qti3e                             *
+ *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
 namespace lib\sessions;
 use lib\network\WebSocketUser;
+
+/**
+ * Class sessionObject
+ * @package lib\sessions
+ */
 class sessionObject extends \ArrayObject{
     private $sessionId;
     private $session;
@@ -29,6 +34,8 @@ class sessionObject extends \ArrayObject{
      */
     public function __construct($sessionId){
         $this->sessionId  = $sessionId;
+        $this->session    = sessions::$sessions[$sessionId];
+        var_dump(sessions::$sessions[$sessionId]);
     }
 
     /**
