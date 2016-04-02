@@ -30,6 +30,7 @@ include('lib/controller/Controller.php');
 $controller = new \lib\controller\Controller();
 include('config.php');
 $controller->run();
+
 //echo \lib\Network::ServerIPv4();
 //For run server type:CD /D E:\lab\WSoc && php index.php
 

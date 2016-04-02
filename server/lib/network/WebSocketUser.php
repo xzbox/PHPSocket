@@ -1,5 +1,10 @@
 <?php
 namespace lib\network;
+
+/**
+ * Class WebSocketUser
+ * @package lib\network
+ */
 class WebSocketUser {
 
   public $socket;

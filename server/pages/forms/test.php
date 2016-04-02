@@ -18,19 +18,14 @@
  *                             Created by  Qti3e                             *
  *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
-return [
-    'ok'=>'OK',
-    'yes'=>'Yes',
-    'no'=>'No',
-    'alert'=>'Alert',
-    'warning'=>'Warning',
-    'info'=>'Info',
-    'success'=>'success',
-    'success_msg'=>'That operation finished successful.',
-    'err'=>[
-        '404'=>[
-            'Page Not Find!',
-            'Sorry,but your requested page in not exists!'
-        ]
-    ]
-];
+namespace pages\forms;
+
+use lib\form\form;
+
+/**
+ * Class test
+ * @package pages
+ */
+class test extends form{
+
+}
