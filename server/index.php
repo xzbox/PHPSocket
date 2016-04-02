@@ -26,6 +26,7 @@
  * @author Quti3e<Qti3eQti3e@Gmail.com>
  */
 set_time_limit(0);
+set_include_path(__DIR__);
 include('lib/controller/Controller.php');
 $controller = new \lib\controller\Controller();
 include('config.php');
