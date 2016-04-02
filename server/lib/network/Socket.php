@@ -34,7 +34,6 @@ class Socket extends WebSocketServer{
      * @return void
      */
     private function sendTemplate($user){
-
         $this->send($user,js::equal('localStorage.templateHash',templates::md5()));
     }
 
