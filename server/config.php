@@ -57,3 +57,13 @@ define('sessions_folder','.tmp');
  * This constant is only for use in javascript's checking.
  */
 define('undefined','undefined');
+
+/**
+ * Redis' server host address normally 127.0.0.1
+ */
+define('redis_host','127.0.0.1');
+
+/**
+ * Redis' server port 6379 as default number
+ */
+define('redis_port',6379);
