@@ -19,7 +19,7 @@
  *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
 
-
+namespace lib\network;
 /**
  * Class Network
  * @package lib\network
