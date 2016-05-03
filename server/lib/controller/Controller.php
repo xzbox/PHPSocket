@@ -55,6 +55,7 @@ class Controller{
     public function __construct(){
         spl_autoload_register([$this,"auto_load"]);
         DB::$DB = new myRedis();
+        DB::$DB->connect(redis_host,redis_port);
     }
 
     public function run(){
