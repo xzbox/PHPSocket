@@ -24,13 +24,6 @@ var host = "192.168.1.6",
     rsa_n,//use in both of decrypting and encrypting as n(public)
     rsa_ed,//rsa_ed is both e and d it uses as e(public) in decrypting and uses as d(private) in encrypting
     debug = true;
-function include(src){
-    var el = document.createElement('script');
-    el.src = src;
-    document.getElementsByTagName('head')[0].appendChild(el);
-    return el;
-}
-var jq    = include("jquery.min.js");
 var title = document.createElement('title');
 title.text = "WSoc";
 document.getElementsByTagName('head')[0].appendChild(title);

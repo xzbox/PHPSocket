@@ -18,28 +18,46 @@
  *                             Created by  Qti3e                             *
  *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
-
+namespace lib\database;
 /**
  * Class DB
  *
  */
 class DB{
 	/**
+	 * @var null|myRedis
+	 */
+	public static $DB = null;
+
+	/**
 	 * @param $name
 	 * @param $value
 	 *
-	 * @return void
+	 * @return array|bool|int|string
 	 */
-	public function SET($name,$value){
-
+	public static function SET($name,$value){
+		return self::$DB->SET($name,$value);
 	}
 
 	/**
 	 * @param $name
 	 *
-	 * @return void
+	 * @return array|bool|int|string
 	 */
-	public function GET($name){
+	public static function GET($name){
+		return self::$DB->GET($name);
+	}
+
+	/**
+	 * @param $name
+	 *
+	 * @return array|bool|int|string
+	 */
+	public static function KEYS($name){
+		return self::$DB->KEYS($name);
+	}
+
+	public static function GET_JSON(){
 
 	}
 }

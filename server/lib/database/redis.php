@@ -18,10 +18,11 @@
  *                             Created by Qti3e                              *
  *       <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>         *
  *****************************************************************************/
+namespace lib\database;
 /**
  * Class myRedisException
  */
-class myRedisException extends Exception{
+class myRedisException extends \Exception{
     /**
      * @var null|string
      */
@@ -308,9 +309,23 @@ class myRedis{
     }
 
     /**
+     * @param $name
+     *
+     * @return array|bool|int|string
+     * @throws myRedisException
+     */
+    public function KEYS($name){
+        return $this->runCommand($this->mkCommand(
+            'KRYS',[
+                      $name
+            ]
+        ));
+    }
+
+    /**
      * Close socket handler
      */
-    public function __destruct(){
+    public function __destruct() {
         fclose($this->connection);
     }
 }

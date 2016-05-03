@@ -19,6 +19,8 @@
  *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
 namespace lib\controller;
+use lib\database\DB;
+use lib\database\myRedis;
 use lib\network\Network;
 use lib\network\Socket;
 use lib\sessions\sessions;
@@ -52,6 +54,7 @@ class Controller{
      */
     public function __construct(){
         spl_autoload_register([$this,"auto_load"]);
+        DB::$DB = new myRedis();
     }
 
     public function run(){

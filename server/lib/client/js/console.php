@@ -21,7 +21,16 @@
 namespace lib\client\js;
 use lib\client\js;
 
+/**
+ * Class console
+ * @package lib\client\js
+ */
 class console{
+	/**
+	 * @param $msg
+	 *
+	 * @return string
+	 */
 	public static function log($msg){
 		return js::jsFunc('console.log',[$msg]);
 	}
