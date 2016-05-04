@@ -71,6 +71,14 @@ iDb.incr = function(name){
 };
 /**
  *
+ * @param name
+ * @param value
+ */
+iDb.incrby = function(name,value){
+    return localStorage.setItem(name,parseInt(localStorage.getItem(name))+value);
+};
+/**
+ *
  * @param json
  * @constructor
  */
