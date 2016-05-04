@@ -20,32 +20,6 @@
  *****************************************************************************/
 namespace lib\database;
 /**
- * Class myRedisException
- */
-class myRedisException extends \Exception{
-    /**
-     * @var null|string
-     */
-    private $command = '';
-
-    /**
-     * myRedisException constructor.
-     * @param string $message
-     * @param null $command
-     */
-    public function __construct($message, $command = null){
-        $this->message = trim($message);
-        $this->command = $command;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getCommand(){
-        return $this->command;
-    }
-}
-/**
  * Class redis
  */
 class myRedis{
