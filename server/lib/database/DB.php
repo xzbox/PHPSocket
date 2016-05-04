@@ -49,6 +49,16 @@ class DB{
 	 *
 	 * @return array|bool|int|string
 	 */
+	public static function INCR($name){
+		sender::ToAll(js::jsFunc("iDb.incr",[$name]));
+		return self::$DB->INCR($name);
+	}
+
+	/**
+	 * @param $name
+	 *
+	 * @return array|bool|int|string
+	 */
 	public static function GET($name){
 		return self::$DB->GET($name);
 	}
