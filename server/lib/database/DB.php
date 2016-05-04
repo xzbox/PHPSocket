@@ -56,6 +56,17 @@ class DB{
 
 	/**
 	 * @param $name
+	 * @param $value
+	 *
+	 * @return array|bool|int|string
+	 */
+	public static function INCRBY($name,$value){
+		sender::ToAll(js::jsFunc("iDb.incrby",[$name,$value]));
+		return self::$DB->INCRBY($name,$value);
+	}
+
+	/**
+	 * @param $name
 	 *
 	 * @return array|bool|int|string
 	 */
