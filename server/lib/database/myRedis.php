@@ -63,6 +63,7 @@ class myRedis{
      * @throws myRedisException
      */
     public function runCommand($command){
+        //echo $command."\n";
         $handle = $this->connection;
         fwrite($handle,$command."\r\n");
         $fl     = fgets($handle);//fl:First Line
@@ -290,7 +291,7 @@ class myRedis{
      */
     public function KEYS($name){
         return $this->runCommand($this->mkCommand(
-            'KRYS',[
+            'KEYS',[
                       $name
             ]
         ));

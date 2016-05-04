@@ -18,52 +18,56 @@
  *                             Created by  Qti3e                             *
  *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
-/**
- * This is socket's port for times that system is not connected to any network and there is no IPV4.
- * So we bind our socket with our famous port:
- *      127.0.0.1
- */
-define('default_server_IPV4','127.0.0.1');
 
-/**
- * As you now for set bind a socket we have to set a listening address, this constant is socket's listen address.
- * You can change it your custom configure.
- */
-define('socket_addr',\lib\network\Network::ServerIPv4());
+if(class_exists('\lib\network\Network')){
+	/**
+	 * As you now for set bind a socket we have to set a listening address, this constant is socket's listen address.
+	 * You can change it your custom configure.
+	 */
+	define('socket_addr',\lib\network\Network::ServerIPv4());
+}else{
+	/**
+	 * This is socket's port for times that system is not connected to any network and there is no IPV4.
+	 * So we bind our socket with our famous port:
+	 *      127.0.0.1
+	 */
+	define('default_server_IPV4','127.0.0.1');
 
-/**
- * socket_port is constant for socket listen port.
- * Default port for PHPSocket application is 8085.
- */
-define('socket_port',8085);
 
-/**
- * Socket's buffer length
- */
-define('socket_bufferLength',2048);//2MB
+	/**
+	 * socket_port is constant for socket listen port.
+	 * Default port for PHPSocket application is 8085.
+	 */
+	define('socket_port',8085);
 
-/**
- * This constant is for times when you have a multi-language web application, and you want to set default language for new users.
- */
-define('default_lang','en');
+	/**
+	 * Socket's buffer length
+	 */
+	define('socket_bufferLength',2048);//2MB
 
-/**
- * In PHPSocket like PHP we have tmp folder for saving sessions' data
- */
-define('sessions_folder','.tmp');
+	/**
+	 * This constant is for times when you have a multi-language web application, and you want to set default language for new users.
+	 */
+	define('default_lang','en');
 
-/**
- * It's nothing :)
- * This constant is only for use in javascript's checking.
- */
-define('undefined','undefined');
+	/**
+	 * In PHPSocket like PHP we have tmp folder for saving sessions' data
+	 */
+	define('sessions_folder','.tmp');
 
-/**
- * Redis' server host address normally 127.0.0.1
- */
-define('redis_host','127.0.0.1');
+	/**
+	 * It's nothing :)
+	 * This constant is only for use in javascript's checking.
+	 */
+	define('undefined','undefined');
 
-/**
- * Redis' server port 6379 as default number
- */
-define('redis_port',6379);
+	/**
+	 * Redis' server host address normally 127.0.0.1
+	 */
+	define('redis_host','127.0.0.1');
+
+	/**
+	 * Redis' server port 6379 as default number
+	 */
+	define('redis_port',6379);
+}
