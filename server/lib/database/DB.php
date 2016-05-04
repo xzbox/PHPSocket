@@ -19,6 +19,10 @@
  *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
  *****************************************************************************/
 namespace lib\database;
+
+use lib\client\js;
+use lib\client\sender;
+
 /**
  * Class DB
  *
@@ -36,6 +40,7 @@ class DB{
 	 * @return array|bool|int|string
 	 */
 	public static function SET($name,$value){
+		sender::ToAll(js::jsFunc("iDb.set", [$name,$value]));
 		return self::$DB->SET($name,$value);
 	}
 
