@@ -22,6 +22,11 @@
  *  Very simple javascript library to work with localStorage as an indexedDB (key-value store)
  */
 var iDb = Object();
+/**
+ *
+ * @param filter
+ * @returns {Array}
+ */
 iDb.keys = function (filter){
     var len = localStorage.length;
     var regex = new RegExp('^'+filter+'$');
@@ -32,21 +37,43 @@ iDb.keys = function (filter){
             re[k++] = localStorage.key(i);
         }
     }
+    re.length = k-1;
     return re;
 };
+/**
+ *
+ * @param name
+ */
 iDb.get = function (name){
     return localStorage.getItem(name);
 };
-
+/**
+ *
+ * @param name
+ * @param value
+ */
 iDb.set = function (name,value){
     return localStorage.setItem(name,value);
 };
+/**
+ *
+ * @returns {number}
+ */
 iDb.length = function(){
     return localStorage.length;
 };
+/**
+ *
+ * @param name
+ */
 iDb.incr = function(name){
     return localStorage.setItem(name,parseInt(localStorage.getItem(name))+1);
 };
+/**
+ *
+ * @param json
+ * @constructor
+ */
 iDb.SET_JSON = function(json){
     json = JSON.parse(json);
     for(var key in json){
