@@ -45,5 +45,11 @@ iDb.length = function(){
     return localStorage.length;
 };
 iDb.incr = function(name){
-    return localStorage.setItem(localStorage.getItem(name)+1);
+    return localStorage.setItem(name,parseInt(localStorage.getItem(name))+1);
+};
+iDb.SET_JSON = function(json){
+    json = JSON.parse(json);
+    for(var key in json){
+        iDb.set(key,json[key]);
+    }
 };
