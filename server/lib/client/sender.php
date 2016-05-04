@@ -54,6 +54,18 @@ class sender{
     }
 
     /**
+     * @param $msg
+     *
+     * @return void
+     */
+    public static function ToAll($msg){
+        $count  = count(Socket::$socket->users);
+        for($i = 0;$i < $count;$i++){
+            Socket::$socket->send(Socket::$socket->users[$i],$msg);
+        }
+    }
+
+    /**
      * @param $lang
      * @param $msg
      * @return int
