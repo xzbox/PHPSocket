@@ -72,7 +72,17 @@ class DB{
 		return self::$DB->KEYS($name);
 	}
 
+	/**
+	 * Make json string for new users to keep them update.
+	 * @return string
+	 */
 	public static function GET_JSON(){
-
+		$keys   = self::KEYS('*');
+		$count  = count($keys);
+		$return = array();
+		for($i = 0;$i <= $count;$i++){
+			$return[$keys[$i]] = self::GET($keys[$i]);
+		}
+		return json_encode($return);
 	}
 }
