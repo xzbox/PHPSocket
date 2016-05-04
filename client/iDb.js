@@ -44,3 +44,6 @@ iDb.set = function (name,value){
 iDb.length = function(){
     return localStorage.length;
 };
+iDb.incr = function(name){
+    return localStorage.setItem(localStorage.getItem(name)+1);
+};
