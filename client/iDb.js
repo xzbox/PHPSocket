@@ -37,7 +37,7 @@ iDb.keys = function (filter,n){
     var re      = [];
     var k       = 0;
     var tmp     = '';
-    for(i = 0;i < len;i++){
+    for(var i = 0;i < len;i++){
         if(regex.test(localStorage.key(i))){
             tmp     = regex.exec(localStorage.key(i));
             re[k++] = tmp[n];
