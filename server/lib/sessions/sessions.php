@@ -108,6 +108,7 @@ final class sessions{
     public static function create($user){
         $sessionId = sha1(sha1($user->headers['sec-websocket-key'].rand(1000,10000)).rand(10001,100000));
         file_put_contents(self::$tmp_address.'/ses_'.$sessionId,self::encode([]));
+        self::$sessions[$sessionId] = array();
         return $sessionId;
     }
 
