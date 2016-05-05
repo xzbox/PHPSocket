@@ -42,10 +42,10 @@ var encryptionSocket = function(webSocket){
     webSocket.onmessage = function(msg){
         //TODO:Decrypt Received Message with RSA
         msg = msg.data;
-        obj.onmessage(msg);
         if(debug){
             console.log("RECEIVED:"+msg);
         }
+        obj.onmessage(msg);
     };
     return obj;
 };
