@@ -19,7 +19,7 @@
  *****************************************************************************/
 /**
  * iDb.js
- *  Very simple javascript library to work with sessionStorage as an indexedDB (key-value store)
+ *  Very simple javascript library to work with localStorage as an indexedDB (key-value store)
  */
 var iDb = Object();
 /**
@@ -28,13 +28,13 @@ var iDb = Object();
  * @returns {Array}
  */
 iDb.keys = function (filter){
-    var len = sessionStorage.length;
+    var len = localStorage.length;
     var regex = new RegExp('^'+filter+'$');
     var re= [];
     var k = 0;
     for(i = 0;i < len;i++){
-        if(regex.test(sessionStorage.key(i))){
-            re[k++] = sessionStorage.key(i);
+        if(regex.test(localStorage.key(i))){
+            re[k++] = localStorage.key(i);
         }
     }
     re.length = k-1;
@@ -45,7 +45,7 @@ iDb.keys = function (filter){
  * @param name
  */
 iDb.get = function (name){
-    return sessionStorage.getItem(name);
+    return localStorage.getItem(name);
 };
 /**
  *
@@ -53,21 +53,21 @@ iDb.get = function (name){
  * @param value
  */
 iDb.set = function (name,value){
-    return sessionStorage.setItem(name,value);
+    return localStorage.setItem(name,value);
 };
 /**
  *
  * @returns {number}
  */
 iDb.length = function(){
-    return sessionStorage.length;
+    return localStorage.length;
 };
 /**
  *
  * @param name
  */
 iDb.incr = function(name){
-    return sessionStorage.setItem(name,parseInt(sessionStorage.getItem(name))+1);
+    return localStorage.setItem(name,parseInt(localStorage.getItem(name))+1);
 };
 /**
  *
@@ -75,7 +75,7 @@ iDb.incr = function(name){
  * @param value
  */
 iDb.incrby = function(name,value){
-    return sessionStorage.setItem(name,parseInt(sessionStorage.getItem(name))+value);
+    return localStorage.setItem(name,parseInt(localStorage.getItem(name))+value);
 };
 /**
  *
