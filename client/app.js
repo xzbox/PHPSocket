@@ -85,7 +85,7 @@ api.requestPage = function(page){
 window.onhashchange = function(){
     api.requestPage(location.hash);
 };
-jq.onload = function(){
+$(document).ready(function(){
     var url = "ws://"+host+":"+port+"/sessionId="+localStorage.sessionId+"&lang="+localStorage.lang+"&md5="+localStorage.templateHash;
     ws = new WebSocket(url);
     ws.onopen = function(){
@@ -98,7 +98,7 @@ jq.onload = function(){
             eval(msg);
         };
     };
-};
+});
 
 /**
  * Didn't understand any thing?
