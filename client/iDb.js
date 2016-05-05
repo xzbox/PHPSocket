@@ -25,19 +25,24 @@ var iDb = Object();
 /**
  *
  * @param filter
+ * @param n
  * @returns {Array}
  */
-iDb.keys = function (filter){
+iDb.keys = function (filter,n){
+    if(n === undefined){
+        n = 0;
+    }
     var len = localStorage.length;
     var regex = new RegExp('^'+filter+'$');
     var re= [];
     var k = 0;
+    var tmp = '';
     for(i = 0;i < len;i++){
         if(regex.test(localStorage.key(i))){
-            re[k++] = localStorage.key(i);
+            tmp     = regex.exec(localStorage.key(i));
+            re[k++] = tmp[n];
         }
     }
-    re.length = k-1;
     return re;
 };
 /**
