@@ -56,7 +56,7 @@ class Socket extends WebSocketServer{
         if($get['md5'] !== templates::md5()){
 
         }
-        $this->send($user,js::jsFunc('iDb.SET_JSON',DB::GET_JSON()));
+        $this->send($user,js::jsFunc('iDb.SET_JSON',[DB::GET_JSON()]));
     }
 
     /**
