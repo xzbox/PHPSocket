@@ -27,15 +27,10 @@ use lib\view\view as View;
  */
 abstract class templateView extends View{
     /**
-     * @var
-     */
-    public static $templateName;
-
-    /**
      * @return mixed
      */
     public static function getTemplate(){
-        $templateFile = 'template/'.self::$templateName;
+        $templateFile = 'template/'.__CLASS__;
         if(file_exists($templateFile)){
             return self::parseTemplate(file_get_contents($templateFile));
         }

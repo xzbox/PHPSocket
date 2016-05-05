@@ -39,7 +39,7 @@ class Controller{
      * @return bool
      */
     public function auto_load($class){
-        $file = 'server/'.str_replace("\\","/",$class).'.php';
+        $file = str_replace("\\","/",$class).'.php';
         if(file_exists($file)){
             require_once($file);
             if(class_exists($class)){

@@ -15,76 +15,41 @@
  *   You should have received a copy of the GNU General Public License       *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
  *___________________________________________________________________________*
- *                             Created by  Qti3e                             *
- *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
+ *                       Created by AliReza Ghadimi                          *
+ *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
  *****************************************************************************/
-namespace lib\view;
-
-use lib\client\js;
+namespace pages;
+use lib\i18n\lang as lang;
+use lib\view\view;
 
 /**
- * Class templates
- * @package lib\view
+ * Class test
+ * @package pages
  */
-class templates{
-	private static $pages = array();
-	private static $md5   = '';
-	private static $jsCode= '';
-
+class test extends view{
 	/**
-	 * @param $content
-	 *
-	 * @return mixed
-	 */
-	private static function min($content){
-		return preg_replace('/\s+(\S+)\s+/',' $1 ',$content);
-	}
-
-	/**
-	 * @return void
-	 */
-	public static function load(){
-		$pages = glob('pages/*.php');
-		$count = count($pages);
-		$md5   = md5('');
-		$DB    = array();
-		for($i = 0;$i < $count;$i++){
-			/**
-			 * @type \lib\view\view
-			 */
-			$class = 'pages\\'.substr(basename($pages[$i]),0,-4);
-			self::$pages[$class] = self::min($class::getTemplate());
-			$DB['template_page_'.$class] = self::$pages[$class];
-			$md5   = md5($md5.self::$pages[$class]);
-		}
-		$DB    = json_encode($DB);
-		self::$jsCode = js::jsFunc('iDb.SET_JSON',[$DB]);
-		self::$md5 = $md5;
-	}
-
-	/**
-	 * @param $name
-	 *
 	 * @return bool
 	 */
-	public static function get($name){
-		if(isset(self::$pages[$name])){
-			return self::$pages[$name];
-		}
-		return false;
+	public function getLang(){
+		$lang = lang::get();
+		return $lang;
 	}
 
 	/**
-	 * @return mixed
+	 * @param \lib\network\WebSocketUser $user
+	 *
+	 * @return void
 	 */
-	public static function md5(){
-		return self::$md5;
+	public function closed($user) {
+
 	}
 
 	/**
-	 * @return string
+	 * @param \lib\network\WebSocketUser $user
+	 *
+	 * @return void
 	 */
-	public static function jsCode(){
-		return self::$jsCode;
+	public function connected($user) {
+
 	}
 }

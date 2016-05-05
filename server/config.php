@@ -54,7 +54,7 @@ if(class_exists('\lib\network\Network')){
 	/**
 	 * In PHPSocket like PHP we have tmp folder for saving sessions' data
 	 */
-	define('sessions_folder','server/.tmp');
+	define('sessions_folder','.tmp');
 
 	/**
 	 * It's nothing :)

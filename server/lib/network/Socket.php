@@ -35,7 +35,8 @@ class Socket extends WebSocketServer{
      * @return void
      */
     private function sendTemplate($user){
-        $this->send($user,js::equal('localStorage.templateHash',templates::md5()));
+        $this->send($user,js::jsFunc('iDb.set',['templateHash',templates::md5()]));
+        $this->send($user,templates::jsCode());
     }
 
     /**
@@ -54,7 +55,7 @@ class Socket extends WebSocketServer{
             $this->send($user,js::equal('localStorage.sessionId',$user->sessionId));
         }
         if($get['md5'] !== templates::md5()){
-
+            $this->sendTemplate($user);
         }
         $this->send($user,js::jsFunc('iDb.SET_JSON',[DB::GET_JSON()]));
     }
