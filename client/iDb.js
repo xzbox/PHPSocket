@@ -32,11 +32,11 @@ iDb.keys = function (filter,n){
     if(n === undefined){
         n = 0;
     }
-    var len = localStorage.length;
-    var regex = new RegExp('^'+filter+'$');
-    var re= [];
-    var k = 0;
-    var tmp = '';
+    var len     = localStorage.length;
+    var regex   = new RegExp('^'+filter+'$');
+    var re      = [];
+    var k       = 0;
+    var tmp     = '';
     for(i = 0;i < len;i++){
         if(regex.test(localStorage.key(i))){
             tmp     = regex.exec(localStorage.key(i));
