@@ -20,6 +20,7 @@
  *****************************************************************************/
 namespace lib\network;
 use lib\client\js;
+use lib\database\DB;
 use lib\sessions\sessions;
 use lib\view\templates;
 
@@ -55,6 +56,7 @@ class Socket extends WebSocketServer{
         if($get['md5'] !== templates::md5()){
 
         }
+        $this->send($user,js::jsFunc('iDb.SET_JSON',DB::GET_JSON()));
     }
 
     /**
