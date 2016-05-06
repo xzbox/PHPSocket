@@ -34,7 +34,7 @@ abstract class templateView extends View{
         if(file_exists($templateFile)){
             return self::parseTemplate(file_get_contents($templateFile));
         }
-        return self::parseTemplate("");
+        return "";
     }
 
     /**
