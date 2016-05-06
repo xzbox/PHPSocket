@@ -24,6 +24,12 @@ var host = "127.0.0.1",
     rsa_n,//use in both of decrypting and encrypting as n(public)
     rsa_ed,//rsa_ed is both e and d it uses as e(public) in decrypting and uses as d(private) in encrypting
     debug = true;
+function include(src){
+    var el = document.createElement('script');
+    el.src = src;
+    document.getElementsByTagName('head')[0].appendChild(el);
+    return el;
+}
 var title = document.createElement('title');
 title.text = "WSoc";
 document.getElementsByTagName('head')[0].appendChild(title);
@@ -80,7 +86,7 @@ api.setSessionId = function(newSessionId){
  * @param page
  */
 api.requestPage = function(page){
-    ws.send('page:'+page);
+
 };
 window.onhashchange = function(){
     api.requestPage(location.hash);
