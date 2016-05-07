@@ -17,14 +17,27 @@
  *                       Created by AliReza Ghadimi                          *
  *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
  *****************************************************************************/
-var onSubmit = function(form){
+var forms       = Object();
+forms.onSubmit  = function(form){
 
 };
-var loadForms = function(){
+forms.load      = function(){
     $('form').each(function(form){
         form = $(form);
         if(form.data('name') !== undefined){
             form.submit(onSubmit);
         }
     });
+};
+var template    = Object();
+template.load   = function(tem){
+    template.vue= new Vue({
+        el: 'body',
+        data: iDb.array(),
+        template: tem,
+        replace: false
+    });
+};
+template.set    = function(name,value){
+    template.vue.$set(name,value);
 };
