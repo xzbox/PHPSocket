@@ -58,6 +58,7 @@ iDb.get = function (name){
  * @param value
  */
 iDb.set = function (name,value){
+    template.set(name,value);
     return localStorage.setItem(name,value);
 };
 /**
