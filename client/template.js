@@ -18,6 +18,25 @@
  *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
  *****************************************************************************/
 var forms       = Object();
+/**
+ * un success :(
+ * But I'll try again and again
+ * @param el
+ * @returns {Object}
+ */
+forms.readFile  = function(el){
+    var re,reader = new FileReader();
+    if(el){
+        reader.readAsBinaryString(el);
+    }
+    console.log(reader.result == '');
+    while(true) {
+        console.log(reader.result);
+        if (reader.result != '') {
+            return reader.result;
+        }
+    }
+};
 forms.onSubmit  = function(form){
 
 };
