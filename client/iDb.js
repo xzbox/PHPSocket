@@ -93,3 +93,11 @@ iDb.SET_JSON = function(json){
         iDb.set(key,json[key]);
     }
 };
+/**
+ *
+ * @param number
+ * @returns {string}
+ */
+iDb.key     = function(number){
+    return localStorage.key(number);
+};
