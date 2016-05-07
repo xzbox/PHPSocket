@@ -101,3 +101,10 @@ iDb.SET_JSON = function(json){
 iDb.key     = function(number){
     return localStorage.key(number);
 };
+/**
+ *
+ * @returns {Storage}
+ */
+iDb.array   = function(){
+    return localStorage;
+};
