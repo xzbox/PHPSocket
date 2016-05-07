@@ -36,7 +36,6 @@ document.getElementsByTagName('head')[0].appendChild(title);
 var ws;
 var encryptionSocket = function(webSocket){
     var obj = Object();
-
     obj.onmessage = webSocket.onmessage;
     obj.send = function(msg){
         //TODO:Encrypt Data to send with RSA
@@ -84,12 +83,20 @@ api.setSessionId = function(newSessionId){
  * Note:All of the templates are loaded in the first and this function only insert
  *      pages into the body ☺
  * @param page
+ * Lik pages/name
  */
 api.requestPage = function(page){
-
+    if(debug){
+        console.log("Request Page:"+page);
+    }
 };
+
+api.send        = function(message){
+    return ws.send(message);
+};
+
 window.onhashchange = function(){
-    api.requestPage(location.hash);
+    api.requestPage(location.hash.substr(1));
 };
 $(document).ready(function(){
     var url = "ws://"+host+":"+port+"/sessionId="+localStorage.sessionId+"&lang="+localStorage.lang+"&md5="+localStorage.templateHash;
@@ -103,6 +110,7 @@ $(document).ready(function(){
         ws.onmessage = function(msg){
             eval(msg);
         };
+        window.onhashchange();
     };
 });
 
