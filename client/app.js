@@ -94,6 +94,19 @@ api.requestPage = function(page){
 api.send        = function(message){
     return ws.send(message);
 };
+/**
+ * Send some command to server in JSON format
+ * $ in the first of each message means message
+ * is in JSON format
+ * @param name
+ * @param data
+ */
+api.sendCommand = function(name,data){
+    return api.send("$"+JSON.stringify({
+        command:name,
+        data:data
+    }));
+};
 
 window.onhashchange = function(){
     api.requestPage(location.hash.substr(1));
