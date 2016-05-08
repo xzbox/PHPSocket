@@ -18,27 +18,55 @@
  *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
  *****************************************************************************/
 var forms       = Object();
+forms.data      = {};
+forms.dLength   = 0;
+forms.reads     = 0;
+forms.name      = '';
+forms.send      = function(){
+    api.command('forms',{
+        name:forms.name,
+        data:forms.data
+    });
+};
 /**
- * un success :(
- * But I'll try again and again
  * @param el
  * @returns {Object}
  */
 forms.readFile  = function(el){
     var re,reader = new FileReader();
+    var name      = $(el).attr('name');
+    forms.name    = name;
+    reader.onloadend    = function(){
+        forms.data[name]= reader.result;
+        forms.reads++;
+        if(forms.reads == forms.dLength){
+            forms.send();
+        }
+    };
     if(el){
         reader.readAsBinaryString(el);
     }
-    console.log(reader.result == '');
-    while(true) {
-        console.log(reader.result);
-        if (reader.result != '') {
-            return reader.result;
-        }
-    }
 };
+/**
+ * Manage submits of all of forms
+ * @param form
+ */
 forms.onSubmit  = function(form){
-
+    form        = $(form);
+    var _name,name    = form.data('name');
+    var inputs  = form.find('input[type!="file"]');
+    for(var input in inputs){
+        _name = $(input).attr('name');
+        forms.data[_name] = $(input).val();
+    }
+    var files   = form.find('input[type="file"]');
+    forms.dLength = files.length;
+    for(var file in files){
+        forms.readFile(file);
+    }
+    if(forms.dLength == 0){
+        forms.send();
+    }
 };
 forms.load      = function(){
     $('form').each(function(form){
