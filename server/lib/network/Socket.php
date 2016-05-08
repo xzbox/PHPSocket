@@ -65,7 +65,17 @@ class Socket extends WebSocketServer{
      * @param $message
      */
     protected function onMessage($user,$message){
+        /**
+         * $- means its a json command
+         */
+        switch($message[0]){
+            case '$':
 
+                break;
+            default:
+                $this->send($user,"-Error! Bad Command.");
+                break;
+        }
     }
 
     /**
