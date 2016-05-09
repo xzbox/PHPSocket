@@ -27,5 +27,10 @@ use lib\form\form;
  * @package pages
  */
 class test extends form{
+	/**
+	 * @return void
+	 */
+	public static function parse(){
 
+	}
 }
