@@ -26,17 +26,17 @@ namespace lib\form;
  */
 abstract class form{
 	protected static $content;
-	protected static $files;
+	protected static $user;
 
 	/**
+	 * @param $user
 	 * @param $content
-	 * @param $files
 	 *
 	 * @return void
 	 */
-	public static function call($content,$files){
+	public static function call($user,$content){
 		self::$content = $content;
-		self::$files   = $files;
+		self::$user    = $user;
 		self::parse();
 	}
 
@@ -46,9 +46,9 @@ abstract class form{
 	 *
 	 * @return bool|int
 	 */
-	private static function move_file_uploaded($file,$address){
-		if(isset(self::$files[$file])){
-			return file_put_contents($address,$file['data']);
+	protected static function move_file_uploaded($file,$address){
+		if(isset(self::$content[$file])){
+			return file_put_contents($address,self::$content[$file]);
 		}
 		return false;
 	}
@@ -56,10 +56,5 @@ abstract class form{
 	/**
 	 * @return void
 	 */
-	public static function parse(){
-		$count = count(self::$files);
-		for($i = 0;$i < $count;$i++){
-			self::move_file_uploaded(self::$files[$i],'file_name/'.self::$files[$i]['name']);
-		}
-	}
+	public static function parse(){}
 }
