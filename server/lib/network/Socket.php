@@ -70,10 +70,21 @@ class Socket extends WebSocketServer{
          */
         switch($message[0]){
             case '$':
-
+                $message      = substr($message,1);
+                if(!($command = json_decode($message,true))){
+                    $this->send($user,'console.error("Error! Command should be in JSON format");');
+                    break;
+                }elseif(!class_exists($class = '\\commands\\'.$command['command'])){
+                    $this->send($user,'console.error("Error! Command not found.");');
+                    break;
+                }else{
+                    if(!empty($re = $class::call($user,$command['data']))){
+                        $this->send($user,$re);
+                    }
+                }
                 break;
             default:
-                $this->send($user,"-Error! Bad Command.");
+                $this->send($user,'console.error("Error! Bad Command.");');
                 break;
         }
     }
