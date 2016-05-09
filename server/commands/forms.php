@@ -25,5 +25,20 @@ namespace commands;
  * @package lib\commands
  */
 class forms{
-
+	/**
+	 * @param $user
+	 * @param $data
+	 *
+	 * @return string
+	 */
+	public static function call($user,$data){
+		/**
+		 * @type \lib\form\form
+		 */
+		$class = 'forms\\'.$data['name'];
+		if(!class_exists($class)){
+			return 'console.error("Form not found");';
+		}
+		return $class::call($user,$data);
+	}
 }
