@@ -89,6 +89,19 @@ api.requestPage = function(page){
     if(debug){
         console.log("Request Page:"+page);
     }
+    var key = 'template_page_'+page;
+    /**
+     * Handel 404 error
+     */
+    if(iDb.keys(key).length == 0){
+        if(iDb.keys('template_page_pages/er404').length == 0){
+            template.load("<h1>404!</h1>")
+        }else{
+            template.load(iDb.get("template_page_pages/er404"));
+        }
+    }else{
+        template.load(iDb.get(key));
+    }
 };
 
 api.send        = function(message){
