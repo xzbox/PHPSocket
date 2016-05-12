@@ -21,12 +21,13 @@
 namespace pages;
 use lib\i18n\lang as lang;
 use lib\view\view;
+use views\templateView;
 
 /**
  * Class main
  * @package pages
  */
-class main extends view{
+class main extends templateView{
     /**
      * @return bool
      */
