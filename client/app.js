@@ -78,6 +78,11 @@ api.setSessionId = function(newSessionId){
     localStorage.sessionId = newSessionId;
 };
 /**
+ * name of page
+ * @type {string}
+ */
+api.pageName     = '';
+/**
  * TODO:Controller
  * This is the main urls controller function that request pages from the server
  * Note:All of the templates are loaded in the first and this function only insert
@@ -90,20 +95,41 @@ api.requestPage = function(page){
         console.log("Request Page:"+page);
     }
     var key = 'template_page_'+page;
-    /**
-     * Handel 404 error
-     */
     if(iDb.keys(key).length == 0){
+        /**
+         * Handel 404 error
+         */
         if(iDb.keys('template_page_pages/er404').length == 0){
+            api.pageName    = '404';
             template.load("<h1>404!</h1>")
         }else{
-            template.load(iDb.get("template_page_pages/er404"));
+            api.pageName    = "template_page_pages/er404";
+            template.load(iDb.get("template_page_pages/err404"));
         }
     }else{
+        api.send('#closed:'+api.pageName);
+        api.send('#open:'+page);
+        api.pageName    = page;
         template.load(iDb.get(key));
     }
 };
-
+/**
+ * Use this function for request pages in your templates like:
+ * Wrong:
+ * <a href='http://apppach/app.html#pages/test'>Click me to open another page</a>
+ * Right:
+ * <a href='#pages/test'>Click me to open another page</a>
+ * <a onclick='api.open("test")'>Click me to open another page</a>
+ * @param name
+ * name is related to page's name
+ */
+api.open        = function(name){
+    location.hash = 'pages/'+name;
+};
+/**
+ * @param message
+ * @returns {*}
+ */
 api.send        = function(message){
     return ws.send(message);
 };
@@ -136,7 +162,11 @@ $(document).ready(function(){
         ws.onmessage = function(msg){
             eval(msg);
         };
-        window.onhashchange();
+        if(location.hash == ''){
+            location.hash = 'pages/main';
+        }else {
+            window.onhashchange();
+        }
     };
 });
 
@@ -144,5 +174,5 @@ $(document).ready(function(){
  * Didn't understand any thing?
  * I'm so sorry because I'm a dirty coder
  * but you can only read it again and one
- * more thing read it again with LOVE♥
+ * more thing, read it again with LOVE♥
  */
