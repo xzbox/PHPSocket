@@ -88,23 +88,24 @@ api.pageName     = '';
  * Note:All of the templates are loaded in the first and this function only insert
  *      pages into the body ☺
  * @param page
- * Lik pages/name
+ * Lik pages\name
  */
 api.requestPage = function(page){
     if(debug){
         console.log("Request Page:"+page);
     }
     var key = 'template_page_'+page;
+    console.log(key);
     if(iDb.keys(key).length == 0){
         /**
          * Handel 404 error
          */
-        if(iDb.keys('template_page_pages/er404').length == 0){
+        if(iDb.keys('template_page_pages\\er404').length == 0){
             api.pageName    = '404';
             template.load("<h1>404!</h1>")
         }else{
-            api.pageName    = "template_page_pages/er404";
-            template.load(iDb.get("template_page_pages/err404"));
+            api.pageName    = "template_page_pages\\er404";
+            template.load(iDb.get("template_page_pages\\err404"));
         }
     }else{
         api.send('#closed:'+api.pageName);
