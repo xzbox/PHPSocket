@@ -24,8 +24,8 @@ if(class_exists('\lib\network\Network')){
 	 * As you now for set bind a socket we have to set a listening address, this constant is socket's listen address.
 	 * You can change it your custom configure.
 	 */
-	//define('socket_addr',\lib\network\Network::ServerIPv4());
-	define('socket_addr','127.0.0.1');
+	define('socket_addr',\lib\network\Network::ServerIPv4());
+	//define('socket_addr','127.0.0.1');
 }else{
 	/**
 	 * This is socket's port for times that system is not connected to any network and there is no IPV4.
