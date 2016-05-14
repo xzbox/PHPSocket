@@ -19,3 +19,8 @@ $ cd PHPSocket\server
 $ php index.php
 ```
 That's it!
+# Client
+Open ```client/app.html``` if it doesn't worked make sure that your host address is true in app.js line 22.
+```#20:var host = "127.0.0.1",```
+but you have to change it into the right IP address that's show on line 3 of server
+```Listening on : 127.0.0.1:8085```
