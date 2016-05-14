@@ -95,7 +95,6 @@ api.requestPage = function(page){
         console.log("Request Page:"+page);
     }
     var key = 'template_page_'+page;
-    console.log(key);
     if(iDb.keys(key).length == 0){
         /**
          * Handel 404 error
