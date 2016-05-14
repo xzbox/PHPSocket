@@ -15,41 +15,18 @@
  *   You should have received a copy of the GNU General Public License       *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
  *___________________________________________________________________________*
- *                             Created by  Qti3e                             *
- *        <http://Qti3e.Github.io>    LO-VE    <Qti3eQti3e@Gmail.com>        *
+ *                       Created by AliReza Ghadimi                          *
+ *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
  *****************************************************************************/
-set_time_limit(0);
-set_include_path(__DIR__);
-include('lib/controller/Controller.php');
-include('config.php');
-//$controller = new \lib\controller\Controller();
-//include('config.php');
+namespace pages;
+use lib\i18n\lang as lang;
+use lib\view\view;
+use views\templateView;
+
 /**
- * Test Each Class
- * This is the Unix philosophy:
- *  Write programs that do one thing and do it well.
- *  Write programs to work together.
- *  Write programs to handle text streams, because that is a universal interface.
+ * Class footer
+ * @package pages
  */
-//echo \lib\database\DB::GET_JSON();
+class footer extends templateView{
 
-$input  = "Open:News:jgg";
-$ex     = explode(':',$input);
-$subject= $ex[0];
-$ars    = substr($input,strlen($subject)+1);
-//var_dump($subject,$ars);
-
-abstract class MyParent{
-	public static $name;
-	public static function name(){
-		self::load();
-		return self::$name;
-	}
-	public static function load(){}
 }
-class child extends MyParent{
-	public static function load(){
-		parent::$name = __CLASS__;
-	}
-}
-var_dump(child::name());

@@ -39,12 +39,17 @@ abstract class view{
      *
      * @return mixed
      */
-    abstract public function connected($user);
+    public static function connected($user){}
 
     /**
      * @param WebSocketUser $user
      *
      * @return mixed
      */
-    abstract public function closed($user);
+    public static function closed($user){}
+
+    /**
+     * @return mixed
+     */
+    public static function load(){}
 }

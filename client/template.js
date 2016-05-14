@@ -80,11 +80,12 @@ var template    = Object();
 template.load   = function(tem){
     template.vue= new Vue({
         el: 'body',
-        data: iDb.array(),
         template: tem,
-        replace: false
+        replace: false,
+        data: {}
     });
+    iDb.vue();
 };
 template.set    = function(name,value){
-    template.vue.$set(name,value);
+    template.vue.$set(name.replace('template_page_pages\\','pages.'),value);
 };

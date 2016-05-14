@@ -28,29 +28,4 @@ use views\templateView;
  * @package pages
  */
 class main extends templateView{
-    /**
-     * @return bool
-     */
-    public function getLang(){
-	    $lang = lang::get();
-        return $lang;
-    }
-
-	/**
-	 * @param \lib\network\WebSocketUser $user
-	 *
-	 * @return void
-	 */
-	public function closed($user) {
-
-	}
-
-	/**
-	 * @param \lib\network\WebSocketUser $user
-	 *
-	 * @return void
-	 */
-	public function connected($user) {
-
-	}
 }

@@ -109,3 +109,11 @@ iDb.key     = function(number){
 iDb.array   = function(){
     return localStorage;
 };
+
+iDb.vue     = function(){
+    var keys = iDb.keys('.+');
+    for(var key in keys){
+        key = iDb.key(key);
+        template.set(key,iDb.get(key));
+    }
+};

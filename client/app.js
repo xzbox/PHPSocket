@@ -116,9 +116,9 @@ api.requestPage = function(page){
 /**
  * Use this function for request pages in your templates like:
  * Wrong:
- * <a href='http://apppach/app.html#pages/test'>Click me to open another page</a>
+ * <a href='http://apppach/app.html#pages\test'>Click me to open another page</a>
  * Right:
- * <a href='#pages/test'>Click me to open another page</a>
+ * <a href='#pages\test'>Click me to open another page</a>
  * <a onclick='api.open("test")'>Click me to open another page</a>
  * @param name
  * name is related to page's name

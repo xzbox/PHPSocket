@@ -35,8 +35,8 @@ class Socket extends WebSocketServer{
      * @return void
      */
     private function sendTemplate($user){
-        $this->send($user,js::jsFunc('iDb.set',['templateHash',templates::md5()]));
         $this->send($user,templates::jsCode());
+        $this->send($user,js::jsFunc('iDb.set',['templateHash',templates::md5()]));
     }
 
     /**
@@ -62,15 +62,16 @@ class Socket extends WebSocketServer{
 
     /**
      * @param $user
-     * @param $message
+     * @param $input
      */
-    protected function onMessage($user,$message){
+    protected function onMessage($user,$input){
         /**
          * $- means its a json command
+         * #subject:arg means a news (for example:#open:pages/test)
          */
-        switch($message[0]){
+        $message      = substr($input,1);
+        switch($input[0]){
             case '$':
-                $message      = substr($message,1);
                 if(!($command = json_decode($message,true))){
                     $this->send($user,'console.error("Error! Command should be in JSON format");');
                     break;
@@ -82,11 +83,31 @@ class Socket extends WebSocketServer{
                         $this->send($user,$re);
                     }
                 }
+                unset($re);
+                break;
+            case '#':
+                $ex         = explode(':',$message);
+                $subject    = $ex[0];
+                $arg        = substr($message,strlen($subject)+1);
+                unset($ex);
+                switch($subject){
+                    case 'open':
+                        if(class_exists($arg)){
+                            $arg::connected($user);
+                        }
+                        break;
+                    case 'closed':
+                        if(class_exists($arg)){
+                            $arg::closed($user);
+                        }
+                        break;
+                }
                 break;
             default:
                 $this->send($user,'console.error("Error! Bad Command.");');
                 break;
         }
+        unset($message);
     }
 
     /**
