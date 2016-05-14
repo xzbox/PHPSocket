@@ -33,7 +33,7 @@ iDb.keys = function (filter,n){
         n = 0;
     }
     var len     = localStorage.length;
-    var regex   = new RegExp('^'+filter+'$');
+    var regex   = new RegExp('^'+filter.replace('\\','\\\\')+'$');
     var re      = [];
     var k       = 0;
     var tmp     = '';
