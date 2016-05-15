@@ -25,7 +25,7 @@ use lib\client\sender;
 
 /**
  * Class DB
- *
+ *  # at first of keys means it's a secret key (like user's password) and don't send them to clients
  */
 class DB{
 	/**
@@ -40,7 +40,9 @@ class DB{
 	 * @return array|bool|int|string
 	 */
 	public static function SET($name,$value){
-		sender::ToAll(js::jsFunc("iDb.set", [$name,$value]));
+		if($name[0] != '#'){
+			sender::ToAll(js::jsFunc("iDb.set", [$name,$value]));
+		}
 		return self::$DB->SET($name,$value);
 	}
 
@@ -50,7 +52,9 @@ class DB{
 	 * @return array|bool|int|string
 	 */
 	public static function INCR($name){
-		sender::ToAll(js::jsFunc("iDb.incr",[$name]));
+		if($name[0] != '#'){
+			sender::ToAll(js::jsFunc("iDb.incr",[$name]));
+		}
 		return self::$DB->INCR($name);
 	}
 
@@ -61,7 +65,9 @@ class DB{
 	 * @return array|bool|int|string
 	 */
 	public static function INCRBY($name,$value){
-		sender::ToAll(js::jsFunc("iDb.incrby",[$name,$value]));
+		if($name[0] != '#'){
+			sender::ToAll(js::jsFunc("iDb.incrby",[$name,$value]));
+		}
 		return self::$DB->INCRBY($name,$value);
 	}
 
@@ -91,8 +97,11 @@ class DB{
 		$keys   = self::KEYS('*');
 		$count  = count($keys);
 		$return = array();
-		for($i = 0;$i < $count;$i++){
-			$return[$keys[$i]] = self::GET($keys[$i]);
+		for($i  = 0;$i < $count;$i++){
+			$key= $keys[$i];
+			if($key[0] != '#'){
+				$return[$keys[$i]] = self::GET($keys[$i]);
+			}
 		}
 		return json_encode($return);
 	}
