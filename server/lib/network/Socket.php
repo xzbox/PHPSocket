@@ -139,6 +139,6 @@ class Socket extends WebSocketServer{
     public function send($user, $message){
         //TODO:RSA
         parent::send($user, $message);
-        $user->lastMsg = $message;
+        @$user->lastMsg = $message;
     }
 }
