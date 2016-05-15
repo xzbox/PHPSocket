@@ -23,7 +23,7 @@ var host = "127.0.0.1",
     port = "8085",
     rsa_n,//use in both of decrypting and encrypting as n(public)
     rsa_ed,//rsa_ed is both e and d it uses as e(public) in decrypting and uses as d(private) in encrypting
-    debug = true;
+    debug = false;
 function include(src){
     var el = document.createElement('script');
     el.src = src;
@@ -163,7 +163,7 @@ $(document).ready(function(){
             eval(msg);
         };
         if(location.hash == ''){
-            location.hash = 'pages/main';
+            location.hash = 'pages\\main';
         }else {
             window.onhashchange();
         }
