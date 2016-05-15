@@ -58,6 +58,9 @@ iDb.get = function (name){
  * @param value
  */
 iDb.set = function (name,value){
+    if(iDb.numberRegex.test(value)){
+        value = parseInt(value);
+    }
     template.set(name,value);
     return localStorage.setItem(name,value);
 };
@@ -68,12 +71,18 @@ iDb.set = function (name,value){
 iDb.length = function(){
     return localStorage.length;
 };
+iDb.isset   = function(name){
+    return iDb.keys(name).length !== 0;
+};
 /**
  *
  * @param name
  */
 iDb.incr = function(name){
-    return localStorage.setItem(name,parseInt(localStorage.getItem(name))+1);
+    if(!iDb.isset(name)){
+        iDb.set(name,0);
+    }
+    return iDb.set(name,parseInt(iDb.get(name))+1);
 };
 /**
  *
@@ -81,7 +90,10 @@ iDb.incr = function(name){
  * @param value
  */
 iDb.incrby = function(name,value){
-    return localStorage.setItem(name,parseInt(localStorage.getItem(name))+value);
+    if(!iDb.isset(name)){
+        iDb.set(name,0);
+    }
+    return iDb.set(name,parseInt(iDb.get(name))+value);
 };
 /**
  *
@@ -109,11 +121,16 @@ iDb.key     = function(number){
 iDb.array   = function(){
     return localStorage;
 };
-
+iDb.numberRegex = new RegExp('^[0-9]+$');
 iDb.vue     = function(){
     var keys = iDb.keys('.+');
+    var val;
     for(var key in keys){
         key = iDb.key(key);
-        template.set(key,iDb.get(key));
+        val = iDb.get(key);
+        if(iDb.numberRegex.test(val)){
+            val = parseInt(val);
+        }
+        template.set(key,val);
     }
 };
