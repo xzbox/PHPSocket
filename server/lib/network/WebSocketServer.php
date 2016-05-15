@@ -101,7 +101,7 @@ abstract class WebSocketServer {
     foreach ($this->heldMessages as $key => $hm) {
       $found = false;
       foreach ($this->users as $currentUser) {
-        if ($hm['user']->socket == $currentUser->socket) {
+        if (@$hm['user']->socket == @$currentUser->socket) {
           $found = true;
           if ($currentUser->handshake) {
             unset($this->heldMessages[$key]);
