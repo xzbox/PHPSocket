@@ -42,12 +42,14 @@ class sender{
      * @return int
      */
     public static function ByPage($page,$msg){
-        $count = count(Socket::$socket->users);
-        $r     = 0;
-        for($i = 0;$i < $count;$i++){
-            if(Socket::$socket->users[$i]->page == $page){
+        $count  = count(Socket::$socket->users);
+        $keys   = array_keys(Socket::$socket->users);
+        $r      = 0;
+        for($i  = 0;$i < $count;$i++){
+            $key= $keys[$i];
+            if(Socket::$socket->users[$key]->page == $page){
                 $r++;
-                Socket::$socket->send(Socket::$socket->users[$i],$msg);
+                Socket::$socket->send(Socket::$socket->users[$key],$msg);
             }
         }
         return $r;
@@ -60,8 +62,9 @@ class sender{
      */
     public static function ToAll($msg){
         $count  = count(Socket::$socket->users);
-        for($i = 0;$i < $count;$i++){
-            Socket::$socket->send(Socket::$socket->users[$i],$msg);
+        $keys   = array_keys(Socket::$socket->users);
+        for($i  = 0;$i < $count;$i++){
+            @Socket::$socket->send(Socket::$socket->users[$keys[$i]],$msg);
         }
     }
 
@@ -71,12 +74,14 @@ class sender{
      * @return int
      */
     public static function ByLang($lang,$msg){
-        $count = count(Socket::$socket->users);
-        $r     = 0;
-        for($i = 0;$i < $count;$i++){
-            if(Socket::$socket->users[$i]->lang == $lang){
+        $count  = count(Socket::$socket->users);
+        $keys   = array_keys(Socket::$socket->users);
+        $r      = 0;
+        for($i  = 0;$i < $count;$i++){
+            $key    = $keys[$i];
+            if(Socket::$socket->users[$key]->lang == $lang){
                 $r++;
-                Socket::$socket->send(Socket::$socket->users[$i],$msg);
+                Socket::$socket->send(Socket::$socket->users[$key],$msg);
             }
         }
         return $r;
@@ -88,12 +93,14 @@ class sender{
      * @return int
      */
     public static function BySocket($socket,$msg){
-        $count = count(Socket::$socket->users);
-        $r     = 0;
-        for($i = 0;$i < $count;$i++){
-            if(Socket::$socket->users[$i]->socket == $socket){
+        $count  = count(Socket::$socket->users);
+        $keys   = array_keys(Socket::$socket->users);
+        $r      = 0;
+        for($i  = 0;$i < $count;$i++){
+            $key= $keys[$i];
+            if(Socket::$socket->users[$key]->socket == $socket){
                 $r++;
-                Socket::$socket->send(Socket::$socket->users[$i],$msg);
+                Socket::$socket->send(Socket::$socket->users[$key],$msg);
             }
         }
         return $r;
@@ -105,12 +112,14 @@ class sender{
      * @return int
      */
     public static function BySessionId($sessionId,$msg){
-        $count = count(Socket::$socket->users);
-        $r     = 0;
-        for($i = 0;$i < $count;$i++){
-            if(Socket::$socket->users[$i]->sessionId == $sessionId){
+        $count  = count(Socket::$socket->users);
+        $keys   = array_keys(Socket::$socket->users);
+        $r      = 0;
+        for($i  = 0;$i < $count;$i++){
+            $key= $keys[$i];
+            if(Socket::$socket->users[$key]->sessionId == $sessionId){
                 $r++;
-                Socket::$socket->send(Socket::$socket->users[$i],$msg);
+                Socket::$socket->send(Socket::$socket->users[$key],$msg);
             }
         }
         return $r;
@@ -122,12 +131,14 @@ class sender{
      * @return int
      */
     public static function ByInformation($information,$msg){
-        $count = count(Socket::$socket->users);
-        $r     = 0;
-        for($i = 0;$i < $count;$i++){
-            if(Socket::$socket->users[$i]->information == $information){
+        $count  = count(Socket::$socket->users);
+        $keys   = array_keys(Socket::$socket->users);
+        $r      = 0;
+        for($i  = 0;$i < $count;$i++){
+            $key= $keys[$i];
+            if(Socket::$socket->users[$key]->information == $information){
                 $r++;
-                Socket::$socket->send(Socket::$socket->users[$i],$msg);
+                Socket::$socket->send(Socket::$socket->users[$key],$msg);
             }
         }
         return $r;
@@ -140,13 +151,15 @@ class sender{
      * @return int
      */
     public static function ByInformationKey($key,$value,$msg){
-        $count = count(Socket::$socket->users);
-        $r     = 0;
-        for($i = 0;$i < $count;$i++){
-            if(isset(Socket::$socket->users[$i]->information[$key])){
-                if(Socket::$socket->users[$i]->information[$key] == $value){
+        $count  = count(Socket::$socket->users);
+        $keys   = array_keys(Socket::$socket->users);
+        $r      = 0;
+        for($i  = 0;$i < $count;$i++){
+            $k  = $keys[$i];
+            if(isset(Socket::$socket->users[$k]->information[$key])){
+                if(Socket::$socket->users[$k]->information[$key] == $value){
                     $r++;
-                    Socket::$socket->send(Socket::$socket->users[$i],$msg);
+                    Socket::$socket->send(Socket::$socket->users[$k],$msg);
                 }
             }
         }
@@ -159,12 +172,14 @@ class sender{
      * @return int
      */
     public static function ByLastMsg($lastMsg,$msg){
-        $count = count(Socket::$socket->users);
-        $r     = 0;
-        for($i = 0;$i < $count;$i++){
-            if(Socket::$socket->users[$i]->lastMsg == $lastMsg){
+        $count  = count(Socket::$socket->users);
+        $keys   = array_keys(Socket::$socket->users);
+        $r      = 0;
+        for($i  = 0;$i < $count;$i++){
+            $key= $keys[$i];
+            if(Socket::$socket->users[$key]->lastMsg == $lastMsg){
                 $r++;
-                Socket::$socket->send(Socket::$socket->users[$i],$msg);
+                Socket::$socket->send(Socket::$socket->users[$key],$msg);
             }
         }
         return $r;
@@ -176,12 +191,14 @@ class sender{
      * @return int
      */
     public static function ByHeaders($header,$msg){
-        $count = count(Socket::$socket->users);
-        $r     = 0;
-        for($i = 0;$i < $count;$i++){
-            if(Socket::$socket->users[$i]->headers == $header){
+        $count  = count(Socket::$socket->users);
+        $keys   = array_keys(Socket::$socket->users);
+        $r      = 0;
+        for($i  = 0;$i < $count;$i++){
+            $key= $keys[$i];
+            if(Socket::$socket->users[$key]->headers == $header){
                 $r++;
-                Socket::$socket->send(Socket::$socket->users[$i],$msg);
+                Socket::$socket->send(Socket::$socket->users[$key],$msg);
             }
         }
         return $r;
@@ -194,13 +211,15 @@ class sender{
      * @return int
      */
     public static function ByHeadersKey($key,$value,$msg){
-        $count = count(Socket::$socket->users);
-        $r     = 0;
-        for($i = 0;$i < $count;$i++){
-            if(isset(Socket::$socket->users[$i]->headers[$key])){
-                if(Socket::$socket->users[$i]->headers[$key] == $value){
+        $count  = count(Socket::$socket->users);
+        $keys   = array_keys(Socket::$socket->users);
+        $r      = 0;
+        for($i  = 0;$i < $count;$i++){
+            $k  = $keys[$i];
+            if(isset(Socket::$socket->users[$k]->headers[$key])){
+                if(Socket::$socket->users[$k]->headers[$key] == $value){
                     $r++;
-                    Socket::$socket->send(Socket::$socket->users[$i],$msg);
+                    Socket::$socket->send(Socket::$socket->users[$k],$msg);
                 }
             }
         }
