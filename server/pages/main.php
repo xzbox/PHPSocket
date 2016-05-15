@@ -19,8 +19,7 @@
  *     <http://AliRezaGhadimi.ir>    LO-VE    <AliRezaGhadimy@Gmail.com>     *
  *****************************************************************************/
 namespace pages;
-use lib\i18n\lang as lang;
-use lib\view\view;
+use lib\database\DB;
 use views\templateView;
 
 /**
@@ -28,4 +27,7 @@ use views\templateView;
  * @package pages
  */
 class main extends templateView{
+	public static function connected($user) {
+		DB::INCR('visits.main');
+	}
 }
