@@ -27,4 +27,10 @@ use lib\view\view;
  * @package pages
  */
 class test extends view{
+	/**
+	 * @return string
+	 */
+	public static function getTemplate() {
+		return '<h1>:)+</h1>';
+	}
 }
