@@ -14,7 +14,7 @@ abstract class WebSocketServer {
   protected $sockets                              = array();
   public    $users                                = array();
   protected $heldMessages                         = array();
-  protected $interactive                          = true;
+  protected $interactive                          = server_interactive;
   protected $headerOriginRequired                 = false;
   protected $headerSecWebSocketProtocolRequired   = false;
   protected $headerSecWebSocketExtensionsRequired = false;
@@ -37,7 +37,7 @@ abstract class WebSocketServer {
     socket_bind($this->master, $addr, $port)                      or die("Failed: socket_bind()");
     socket_listen($this->master,20)                               or die("Failed: socket_listen()");
     $this->sockets['m'] = $this->master;
-    $this->stdout("Listening on : $addr:$port\nMaster socket: ".$this->master);//By WSoc
+    print("Listening on : $addr:$port\nMaster socket: {$this->master}\n");//By WSoc
     self::$socket = $this;//By WSoc
   }
 
