@@ -21,6 +21,7 @@
 
 var host = "127.0.0.1",
     port = "8085",
+    appName = 'PHPSocket',
     rsa_n,//use in both of decrypting and encrypting as n(public)
     rsa_ed,//rsa_ed is both e and d it uses as e(public) in decrypting and uses as d(private) in encrypting
     debug = false;
@@ -31,7 +32,7 @@ function include(src){
     return el;
 }
 var title = document.createElement('title');
-title.text = "WSoc";
+title.text = appName;
 document.getElementsByTagName('head')[0].appendChild(title);
 var ws;
 var encryptionSocket = function(webSocket){
