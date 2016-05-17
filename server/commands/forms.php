@@ -39,6 +39,7 @@ class forms{
 		if(!class_exists($class)){
 			return 'console.error("Form not found");';
 		}
-		return $class::call($user,$data);
+		$class::call($user,$data['data']);
+		return $class::parse();
 	}
 }
