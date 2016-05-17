@@ -24,7 +24,7 @@ namespace lib\form;
  * Class form
  * @package lib\form
  */
-abstract class form{
+class form{
 	protected static $content;
 	protected static $user;
 
@@ -37,7 +37,6 @@ abstract class form{
 	public static function call($user,$content){
 		self::$content = $content;
 		self::$user    = $user;
-		self::parse();
 	}
 
 	/**
