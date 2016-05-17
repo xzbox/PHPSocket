@@ -27,3 +27,7 @@ Open ```client/app.html``` if it doesn't worked make sure that your host address
 but you have to change it into the right IP address that's show on line 3 of server
 
 ```Listening on : 127.0.0.1:8085```
+
+# Todo List
+1. Fix forms controller (specially file upload support)
+2. Use RSA
