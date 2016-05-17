@@ -20,6 +20,7 @@
  *****************************************************************************/
 namespace forms;
 
+use lib\database\DB;
 use lib\form\form;
 
 /**
@@ -31,6 +32,6 @@ class test extends form{
 	 * @return void
 	 */
 	public static function parse(){
-
+		var_dump(self::$content);
 	}
 }
