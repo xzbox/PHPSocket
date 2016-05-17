@@ -23,7 +23,7 @@ forms.dLength   = 0;
 forms.reads     = 0;
 forms.name      = '';
 forms.send      = function(){
-    api.command('forms',{
+    api.sendCommand('forms',{
         name:forms.name,
         data:forms.data
     });
@@ -35,7 +35,6 @@ forms.send      = function(){
 forms.readFile  = function(el){
     var re,reader = new FileReader();
     var name      = $(el).attr('name');
-    forms.name    = name;
     reader.onloadend    = function(){
         forms.data[name]= reader.result;
         forms.reads++;
@@ -52,27 +51,27 @@ forms.readFile  = function(el){
  * @param form
  */
 forms.onSubmit  = function(form){
-    form        = $(form);
-    var _name,name    = form.data('name');
-    var inputs  = form.find('input[type!="file"]');
-    for(var input in inputs){
-        _name = $(input).attr('name');
-        forms.data[_name] = $(input).val();
-    }
-    var files   = form.find('input[type="file"]');
-    forms.dLength = files.length;
-    for(var file in files){
-        forms.readFile(file);
-    }
+    form        = $(this);
+    forms.name = form.data('name');
+    form.find('input[type!="file"]').each(function(){
+        var el = $(this);
+        forms.data[el.attr('name')] = el.val();
+    });
+    //var files       = form.find('input[type="file"]');
+    //forms.dLength   = files.length;
+    //files.each(function(){
+        //forms.readFile(this);
+    //});
     if(forms.dLength == 0){
         forms.send();
     }
+    return false;
 };
 forms.load      = function(){
     $('form').each(function(form){
-        form = $(form);
-        if(form.data('name') !== undefined){
-            form.submit(onSubmit);
+        form = $(this);
+        if(form.data('name') != undefined){
+            form.submit(forms.onSubmit);
         }
     });
 };
@@ -85,6 +84,7 @@ template.load   = function(tem){
         data: {}
     });
     iDb.vue();
+    forms.load();
 };
 template.set    = function(name,value){
     template.vue.$set(name.replace('template_page_pages\\','pages.'),value);
