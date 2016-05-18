@@ -62,7 +62,7 @@ class Controller{
         sessions::$tmp_address = sessions_folder;
         sessions::load();
         templates::load();
-        printf("Welcome to the WSoc server!\r\nIPv4 Address : %s\r\n",Network::ServerIPv4());
+        printf("Welcome to the PHPSocket!\r\nApp name     : \"".app_name."\"\r\nIPv4 Address : %s\r\n",Network::ServerIPv4());
         $this->server = new Socket(socket_addr,socket_port,socket_bufferLength);
         $this->server->run();
     }
