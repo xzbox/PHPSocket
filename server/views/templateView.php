@@ -34,7 +34,7 @@ abstract class templateView extends View{
     public static function getTemplate($class){
         //TODO fix this bug
         $name   = explode('\\',$class);
-        $templateFile = 'templates/'.$name[1].".tpl";
+        $templateFile = 'templates/'.$name[1].".html";
         if(file_exists($templateFile)){
             return self::parseTemplate(file_get_contents($templateFile));
         }
