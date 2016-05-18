@@ -89,13 +89,13 @@ api.pageName     = '';
  * Note:All of the templates are loaded in the first and this function only insert
  *      pages into the body ☺
  * @param page
- * Lik pages\name
+ * Lik name
  */
 api.requestPage = function(page){
     if(debug){
         console.log("Request Page:"+page);
     }
-    var key = 'template_page_'+page;
+    var key = 'template_page_pages\\'+page;
     if(iDb.keys(key).length == 0){
         /**
          * Handel 404 error
@@ -108,10 +108,10 @@ api.requestPage = function(page){
             template.load(iDb.get("template_page_pages\\err404"));
         }
     }else{
-        api.send('#closed:'+api.pageName);
-        api.send('#open:'+page);
+        api.send('#closed:pages\\'+api.pageName);
+        api.send('#open:pages\\'+page);
         api.pageName    = page;
-        template.load(iDb.get(key));
+        template.load(template.make(page));
     }
 };
 /**
@@ -164,7 +164,7 @@ $(document).ready(function(){
             eval(msg);
         };
         if(location.hash == ''){
-            location.hash = 'pages\\main';
+            location.hash = 'main';
         }else {
             window.onhashchange();
         }
