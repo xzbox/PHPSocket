@@ -89,3 +89,17 @@ template.load   = function(tem){
 template.set    = function(name,value){
     template.vue.$set(name.replace('template_page_pages\\','pages.'),value);
 };
+template.incReg = new  RegExp('{{inc\\s+?(\\S+?)}}');
+template.make   = function (name){
+    if(iDb.isset('template_page_pages\\'+name)){
+        var tem = iDb.get('template_page_pages\\'+name);
+        var inc,comment;
+        while(template.incReg.test(tem)){
+            inc = template.incReg.exec(tem);
+            tem = tem.replace(inc[0],iDb.get('template_page_pages\\'+inc[1]));
+        }
+        return tem;
+    }else {
+        return '';
+    }
+};
