@@ -22,7 +22,7 @@
 if(class_exists('\lib\network\Network')){
 	/**
 	 * As you now for set bind a socket we have to set a listening address, this constant is socket's listen address.
-	 * You can change it your custom configure.
+	 * You can change it to your custom configure.
 	 */
 	//define('socket_addr',\lib\network\Network::ServerIPv4());
 	define('socket_addr','127.0.0.1');
@@ -76,4 +76,9 @@ if(class_exists('\lib\network\Network')){
 	 * Print reports when it's true
 	 */
 	define('server_interactive',false);
+
+	/**
+	 * Your application name
+	 */
+	define('app_name','Demo');
 }
