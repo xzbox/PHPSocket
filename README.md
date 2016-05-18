@@ -24,10 +24,10 @@ Open ```client/app.html``` if it doesn't worked make sure that your host address
 
 ```#20:var host = "127.0.0.1",```
 
-but you have to change it into the right IP address that's show on line 3 of server
+but you have to change it into the right IP address that's show on line 4 of server
 
 ```Listening on : 127.0.0.1:8085```
 
 # Todo List
 1. Fix forms controller (specially file upload support)
-2. Use RSA
+2. Encrypt client-server's data
