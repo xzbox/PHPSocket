@@ -44,19 +44,27 @@ class templates{
 	 * @return void
 	 */
 	public static function load(){
-		$pages = glob('pages/*.php');
-		$count = count($pages);
 		$md5   = md5('');
 		$DB    = array();
+		$tem   = glob('templates/*.html');
+		$count = count($tem);
+		for($i = 0;$i < $count;$i++){
+			$page   = 'pages\\' . substr(basename($tem[$i]), 0, -5);
+			self::$pages[$page]         = self::min(file_get_contents($tem[$i]));
+			$DB['template_page_'.$page] = self::$pages[$page];
+			$md5    = md5($md5 . self::$pages[$page]);
+		}
+		$pages = glob('pages/*.php');
+		$count = count($pages);
 		for($i = 0;$i < $count;$i++){
 			/**
 			 * @type \lib\view\view
 			 */
-			$class = 'pages\\'.substr(basename($pages[$i]),0,-4);
+			$class = 'pages\\' . substr(basename($pages[$i]), 0, -4);
 			$class::load();
 			self::$pages[$class] = self::min($class::getTemplate($class));
-			$DB['template_page_'.$class] = self::$pages[$class];
-			$md5   = md5($md5.self::$pages[$class]);
+			$DB['template_page_' . $class] = self::$pages[$class];
+			$md5 = md5($md5 . self::$pages[$class]);
 		}
 		$DB    = json_encode($DB);
 		self::$jsCode = js::jsFunc('iDb.SET_JSON',[$DB]);
