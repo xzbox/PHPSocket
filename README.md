@@ -1,6 +1,6 @@
 [![Build](https://img.shields.io/wercker/ci/wercker/docs.svg?maxAge=2592000)]()
 [![License](https://img.shields.io/aur/license/yaourt.svg?maxAge=2592000)]()
-[![Timer](https://img.shields.io/badge/Relace-V0.75Beta-blue.svg)](https://github.com/Qti3e/PHPSocket/releases/tag/0.75-beta)
+[![Timer](https://img.shields.io/badge/Relace-V0.75-blue.svg)](https://github.com/Qti3e/PHPSocket/releases/tag/0.75)
 
 # PHPSocket
 Advanced PHP server-client platform for making real time web applications, based on the power of [WebSocket](https://en.wikipedia.org/wiki/WebSocket) and [vue.js](https://vuejs.org/)
