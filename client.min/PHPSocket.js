@@ -40,16 +40,19 @@ forms.send      = function(){
  */
 forms.readFile  = function(el){
     var re,reader = new FileReader();
+    var blob      = el.files[0];
     var name      = $(el).attr('name');
     reader.onloadend    = function(){
         forms.data[name]= reader.result;
-        forms.reads++;
-        if(forms.reads == forms.dLength){
+        forms.dLength--;
+        if(forms.dLength == 0){
             forms.send();
         }
     };
-    if(el){
-        reader.readAsBinaryString(el);
+    if(blob){
+        reader.readAsBinaryString(blob);
+    }else {
+        forms.dLength--;
     }
 };
 /**
@@ -59,18 +62,19 @@ forms.readFile  = function(el){
 forms.onSubmit  = function(form){
     form        = $(this);
     forms.name = form.data('name');
-    form.find('input[type!="file"]').each(function(){
+    form.find('input').each(function(){
         var el = $(this);
-        forms.data[el.attr('name')] = el.val();
+        if(el.attr('type') == 'file'){
+            forms.dLength++;
+            forms.readFile(this);
+        }else {
+            forms.data[el.attr('name')] = el.val();
+        }
     });
-    //var files       = form.find('input[type="file"]');
-    //forms.dLength   = files.length;
-    //files.each(function(){
-        //forms.readFile(this);
-    //});
     if(forms.dLength == 0){
         forms.send();
     }
+    form[0].reset();
     return false;
 };
 forms.load      = function(){
