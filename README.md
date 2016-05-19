@@ -29,5 +29,4 @@ but you have to change it into the right IP address that's show on line 4 of ser
 ```Listening on : 127.0.0.1:8085```
 
 # Todo List
-1. Fix forms controller (specially file upload support)
-2. Encrypt client-server's data
+1. Encrypt client-server's data
