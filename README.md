@@ -3,7 +3,7 @@
 [![Timer](https://img.shields.io/badge/Relace-V0.75-blue.svg)](https://github.com/Qti3e/PHPSocket/releases/tag/0.75)
 
 # PHPSocket
-Advanced PHP server-client platform for making real time web applications, based on the power of [WebSocket](https://en.wikipedia.org/wiki/WebSocket) and [vue.js](https://vuejs.org/)
+Advanced PHP server-client platform to make real time web applications, based on the power of [WebSocket](https://en.wikipedia.org/wiki/WebSocket) and [vue.js](https://vuejs.org/)
 
 Read [API Documention](http://qti3e.github.io/PHPSocket/docs/) for more details.
 
