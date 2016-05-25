@@ -81,4 +81,14 @@ if(class_exists('\lib\network\Network')){
 	 * Your application name
 	 */
 	define('app_name','Demo');
+
+	/**
+	 * sysadmin's username
+	 */
+	define('admin_username','admin');
+
+	/**
+	 * sysadmin's password
+	 */
+	define('admin_password','admin');
 }
