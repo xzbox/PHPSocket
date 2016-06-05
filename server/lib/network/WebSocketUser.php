@@ -51,7 +51,7 @@ class WebSocketUser {
 
   /**
    * WebSocketUser constructor.
-   *
+   * 
    * @param $id
    * @param $socket
    */
