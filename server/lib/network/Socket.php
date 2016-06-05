@@ -22,6 +22,7 @@ namespace lib\network;
 use lib\client\js;
 use lib\database\DB;
 use lib\sessions\sessions;
+use lib\sysadmin\sys;
 use lib\view\templates;
 
 /**
@@ -40,28 +41,32 @@ class Socket extends WebSocketServer{
     }
 
     /**
-     * @param $user
+     * @param WebSocketUser $user
      *
      * @return void
      */
     protected function connected($user){
         parse_str(trim($user->headers['get'],'/'),$get);
-        $user->sessionId = $get['sessionId'] == undefined ? sessions::create($user) : $get['sessionId'];
-        $user->lang      = $get['lang'] == undefined ? default_lang : $get['lang'];
-        if($get['sessionId'] == undefined){
-            $this->send($user,js::equal('localStorage.sessionId',$user->sessionId));
-        }elseif(!sessions::issetId($get['sessionId'])){
-            $user->sessionId = sessions::create($user);
-            $this->send($user,js::equal('localStorage.sessionId',$user->sessionId));
+        if(isset($get['IAMADMIN'])){
+            $user->isAdmin  = 1;
+        }else{
+            $user->sessionId = $get['sessionId'] == undefined ? sessions::create($user) : $get['sessionId'];
+            $user->lang      = $get['lang'] == undefined ? default_lang : $get['lang'];
+            if($get['sessionId'] == undefined){
+                $this->send($user,js::equal('localStorage.sessionId',$user->sessionId));
+            }elseif(!sessions::issetId($get['sessionId'])){
+                $user->sessionId = sessions::create($user);
+                $this->send($user,js::equal('localStorage.sessionId',$user->sessionId));
+            }
+            if($get['md5'] !== templates::md5()){
+                $this->sendTemplate($user);
+            }
+            $this->send($user,js::jsFunc('iDb.SET_JSON',[DB::GET_JSON()]));
         }
-        if($get['md5'] !== templates::md5()){
-            $this->sendTemplate($user);
-        }
-        $this->send($user,js::jsFunc('iDb.SET_JSON',[DB::GET_JSON()]));
     }
 
     /**
-     * @param $user
+     * @param WebSocketUser $user
      * @param $input
      */
     protected function onMessage($user,$input){
@@ -120,14 +125,18 @@ class Socket extends WebSocketServer{
     }
 
     /**
-     * @param $user
+     * @param WebSocketUser $user
      * @param $message
      *
      * @return void
      */
     protected function process($user, $message){
         //TODO:RSA
-        $this->onMessage($user,$message);
+        if($user->isAdmin == 0){
+            $this->onMessage($user,$message);
+        }else{
+            sys::onMessage($user,$message);
+        }
     }
 
     /**
