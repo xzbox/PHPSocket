@@ -34,13 +34,27 @@ class WebSocketUser {
       'sec-websocket-extensions'  => null,
   );
 
-  public $partialBuffer = "";
+  public $partialBuffer     = "";
   public $sendingContinuous = false;
 
-  public $partialMessage = "";
+  public $partialMessage    = "";
 
-  public $hasSentClose = false;
+  public $hasSentClose      = false;
 
+  /**
+   * @var int
+   * 0:Means no
+   * 1:Means yes but not verified
+   * 2:Means he is admin (Username and password were verified)
+   */
+  public $isAdmin           = 0;
+
+  /**
+   * WebSocketUser constructor.
+   *
+   * @param $id
+   * @param $socket
+   */
   function __construct($id, $socket) {
     $this->id = $id;
     $this->socket = $socket;
